@@ -3,7 +3,7 @@ import React from 'react'
 const Login = () => {
     return ( 
          <div>
-            Guia no Loguin!
+            Teste dos styles globais !
          </div>
 
 
