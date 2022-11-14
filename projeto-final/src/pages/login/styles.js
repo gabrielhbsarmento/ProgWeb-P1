@@ -20,7 +20,6 @@ export const Form = styled.form`
   width: 100%;
   max-width: 450px;
   gap: 30px 0px;
-
   h1 {
     color: white;
     font-size: 20px;
@@ -37,5 +36,10 @@ export const Form = styled.form`
   }
 `
 
-
+export const SubContainerSign = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0px 20px;
+  align-items: center;
+`
 //criando componentes estilizados 
