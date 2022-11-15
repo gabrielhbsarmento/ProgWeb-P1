@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import { Container, Form, SubContainerSign } from './styles'
-import Input from '../../Components/Input/index'
-import Botao from '../../Components/Botao/index'
-import { validarEmail, validarSenha, validarTelefone, validarNome, validarConfirmarSenha } from '../../Utils/validadores'
-import UserService from '../../Services/UserService'
+import Input from '../../components/input/index'
+import Botao from '../../components/Botao/index'
+import { validarEmail, validarSenha, validarTelefone, validarNome, validarConfirmarSenha } from '../../utils/validadores'
+import UserService from '../../services/UserService'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 const userService = new UserService()

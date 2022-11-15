@@ -1,7 +1,7 @@
 import React from 'react'
-import Login from '../Pages/Login/index'
+import Login from '../pages/login/index'
 import ProtectedRoutes from '../Routes/ProtectedRoutes'
-import Cadastro from '../Pages/Cadastro/index'
+import Cadastro from '../pages/Cadastro/index'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
