@@ -6,6 +6,9 @@ import { validarEmail, validarSenha, validarTelefone, validarNome, validarConfir
 import UserService from '../../services/UserService'
 import { NavLink, useNavigate } from 'react-router-dom'
 
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {auth} from '../../services/firebase'
+
 const userService = new UserService()
 
 const Cadastro = () => {
@@ -17,6 +20,13 @@ const Cadastro = () => {
     event.preventDefault();
     try {
       setLoading(true)
+      const data = await createUserWithEmailAndPassword(auth, form.email, form.password)
+      if (data) {
+        alert('usuário Cadastrado com Sucesso')
+        
+        navigate('/home')
+      }
+      /**
       const { data } = await userService.cadastrar({
         nome: form.nome,
         telefone: form.telefone,
@@ -31,8 +41,9 @@ const Cadastro = () => {
         if (responseLogin === true) {
           alert('usuário Cadastrado com Sucesso')
           navigate('/home')
-        }
-    }
+         } 
+        } */
+      
       setLoading(false)
     }
     catch (err) {

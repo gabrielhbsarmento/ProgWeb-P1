@@ -1,10 +1,13 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Container, Form, SubContainerSign } from './styles'
 import Input from '../../components/input/index'
 import Botao from '../../components/Botao/index'
 import { validarEmail, validarSenha } from '../../utils/validadores'
 import UserService from '../../services/UserService'
 import { NavLink, useNavigate } from 'react-router-dom'
+
+import {signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth'
+import {auth} from '../../services/firebase'
 
 const userService = new UserService()
 
@@ -13,16 +16,34 @@ const Login = () => {
   const [form, setForm] = useState([])
   const navigate = useNavigate()
 
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if(user){
+        navigate('/home')
+      }
+    })
+  })
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       setLoading(true)
-      const response = await userService.login(form)
-      console.log('response do Login', response)
-      if (response === true) {
+      const data = await signInWithEmailAndPassword(auth, form.email, form.password)
+      //console.log('response do Login', response)
+      console.log(data)
+      if(data){//if (response === true) {
         alert('usuário Logado com Sucesso')
         navigate('/home')
       }
+      setLoading(false)
+      /* 
+        const response = await userService.login(form)
+        console.log('response do Login', response)
+        if (response === true) {
+          alert('usuário Logado com Sucesso')
+          navigate('/home')
+        }
+      */
       setLoading(false)
     }
     catch (err) {

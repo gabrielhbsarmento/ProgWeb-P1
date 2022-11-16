@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+import {auth} from '../services/firebase'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+
+
 export default class UserServices {
   constructor () {
     this.axios = axios.create({
@@ -22,7 +26,9 @@ export default class UserServices {
   }
 
   async cadastrar (dados) {
-    return this.axios.post('/user', dados)
+    console.log(dados.password)
+    return await createUserWithEmailAndPassword(auth, dados.email, dados.password)
+    //return this.axios.post('/user', dados)
   }
 
   usuarioAutenticado () {
