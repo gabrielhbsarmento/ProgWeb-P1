@@ -23,11 +23,35 @@ const Home = () => {
   
   return (
     <Container>
+      <Form>
+        <h1>🍽 Registro de pedidos 🍽 </h1>
+        <h1>🤤</h1>
+        <Input
+          name='Pedido'
+          placeholder='Digite o pedido'
+          //onChange={handleChange}
+          type='text'
+        />
+        <Input
+          name='cost'
+          placeholder='Preço'
+          //onChange={handleChange}
+          type='text'
+        />
+        <Botao
+          type='submit'
+          text='Cadastrar Pedido'
+          //onClick={handleSubmit}
+          //disabled={loading === true || !validadorInput()}
+        />
         <Botao
           text='Deslogar'
           onClick={signOutHandler}
                   />
+                  </Form>
     </Container>
+    
+
     
   )
 }
