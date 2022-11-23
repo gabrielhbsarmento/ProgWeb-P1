@@ -16,9 +16,32 @@ const Home = () => {
   const [form, setForm] = useState([])
   const navigate = useNavigate()
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      setLoading(true)
+      const data = await (auth, form.Pedido, form.Preco)
+      if (data) {
+        alert('Pedido Cadastrado com Sucesso')
+        
+        
+      }
+      
+      setLoading(false)
+    }
+    catch (err) {
+      alert('Algo deu errado com o Cadastro' + err)
+    }
+  }
+
+
   const signOutHandler = async () => {
     await signOut(auth);
     navigate("/login")
+  }
+
+  const handleChange = (event) => {
+    setForm({...form, [event.target.name]: event.target.value})
   }
   
   return (
@@ -29,19 +52,19 @@ const Home = () => {
         <Input
           name='Pedido'
           placeholder='Digite o pedido'
-          //onChange={handleChange}
+          onChange={handleChange}
           type='text'
         />
         <Input
-          name='cost'
+          name='Preco'
           placeholder='Preço'
-          //onChange={handleChange}
+          onChange={handleChange}
           type='text'
         />
         <Botao
           type='submit'
           text='Cadastrar Pedido'
-          //onClick={handleSubmit}
+          onClick={handleSubmit}
           //disabled={loading === true || !validadorInput()}
         />
         <Botao
